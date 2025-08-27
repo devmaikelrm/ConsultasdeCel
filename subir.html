@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subir Modelos - Teléfonos Cuba</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Subir Teléfonos</h1>
+</header>
+
+<main>
+  <section>
+    <input type="text" id="commercial_name" placeholder="Nombre comercial">
+    <input type="text" id="model" placeholder="Modelo">
+    <input type="text" id="bands" placeholder="Bandas soportadas (ej. 2G,3G,4G)">
+    <input type="text" id="provinces" placeholder="Provincias donde se testeo">
+    <input type="text" id="tester" placeholder="Nombre del tester">
+    <input type="email" id="email-tester" placeholder="Correo del tester" required>
+    <button onclick="addPhone()">Agregar Teléfono</button>
+    <p id="addStatus"></p>
+  </section>
+</main>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
