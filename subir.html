@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subir Modelos - Teléfonos Cuba</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teléfonos Cuba - Subir</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-  <h1>Subir Teléfonos</h1>
-</header>
+  <!-- Navbar -->
+  <header class="navbar">
+    <h1>📱 Teléfonos Cuba</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="revisar.html">Revisar</a>
+      <a href="subir.html" class="active">Subir</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
 
-<main>
-  <section>
-    <input type="text" id="commercial_name" placeholder="Nombre comercial">
-    <input type="text" id="model" placeholder="Modelo">
-    <input type="text" id="bands" placeholder="Bandas soportadas (ej. 2G,3G,4G)">
-    <input type="text" id="provinces" placeholder="Provincias donde se testeo">
-    <input type="text" id="tester" placeholder="Nombre del tester">
-    <input type="email" id="email-tester" placeholder="Correo del tester" required>
-    <button onclick="addPhone()">Agregar Teléfono</button>
-    <p id="addStatus"></p>
-  </section>
-</main>
+  <!-- Formulario subir -->
+  <main>
+    <section class="card fade-in">
+      <h2>Subir nuevo modelo</h2>
+      <form class="form">
+        <label for="modelo">Modelo del teléfono</label>
+        <input type="text" id="modelo" placeholder="Ej: Samsung Galaxy A12" required>
+        
+        <label for="bandas">Bandas de red compatibles</label>
+        <input type="text" id="bandas" placeholder="Ej: 3G 900/2100, 4G LTE 1800/2600" required>
+        
+        <label for="archivo">Captura / Prueba</label>
+        <input type="file" id="archivo" accept="image/*">
 
-<script type="module" src="script.js"></script>
+        <button type="submit" class="btn">⬆️ Subir modelo</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>💙 Gracias por aportar al proyecto colaborativo</p>
+  </footer>
 </body>
 </html>

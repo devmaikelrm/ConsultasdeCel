@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Teléfonos Cuba</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teléfonos Cuba - Login</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-  <h1>Login</h1>
-</header>
+  <!-- Navbar -->
+  <header class="navbar">
+    <h1>📱 Teléfonos Cuba</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="revisar.html">Revisar</a>
+      <a href="subir.html">Subir</a>
+      <a href="login.html" class="active">Login</a>
+    </nav>
+  </header>
 
-<main>
-  <section class="login-section">
-    <input type="email" id="email-login" placeholder="Correo electrónico" required>
-    <input type="password" id="password-login" placeholder="Contraseña" required>
-    <button onclick="login()">Acceder</button>
-    <p><a href="#" onclick="recoverPassword()">¿Olvidaste tu contraseña?</a></p>
-    <p id="login-status"></p>
-  </section>
-</main>
+  <!-- Formulario de login -->
+  <main>
+    <section class="card fade-in">
+      <h2>Iniciar Sesión</h2>
+      <form class="form">
+        <label for="usuario">Usuario</label>
+        <input type="text" id="usuario" placeholder="Ingresa tu usuario" required>
+        
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" placeholder="********" required>
+        
+        <button type="submit" class="btn">Entrar</button>
+      </form>
 
-<script type="module" src="script.js"></script>
+      <!-- Sección de donaciones -->
+      <div class="donaciones">
+        <h3>💙 Apoya este proyecto</h3>
+        <p>Si deseas ayudar a mantener la web activa, puedes donar por:</p>
+        <ul>
+          <li>📩 PayPal: <a href="https://www.paypal.me/MReyesMorales343" target="_blank">paypal.me/MReyesMorales343</a></li>
+          <li>💳 Tarjeta cubana (CUP): <strong>9238 1299 7063 1810</strong></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>💙 Proyecto colaborativo para Cuba</p>
+  </footer>
 </body>
 </html>
