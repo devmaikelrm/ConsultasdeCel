@@ -1,24 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Revisar Modelos - Teléfonos Cuba</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teléfonos Cuba - Revisar</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-  <h1>Revisar Teléfonos</h1>
-</header>
+  <!-- Navbar -->
+  <header class="navbar">
+    <h1>📱 Teléfonos Cuba</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="revisar.html" class="active">Revisar</a>
+      <a href="subir.html">Subir</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
 
-<main>
-  <section>
-    <input type="text" id="search" placeholder="Buscar por nombre o modelo">
-    <button onclick="searchPhone()">Buscar</button>
-    <div id="results"></div>
-  </section>
-</main>
+  <!-- Lista de modelos -->
+  <main>
+    <section class="card fade-in">
+      <h2>Modelos registrados</h2>
+      <input type="text" class="search" placeholder="🔍 Buscar modelo...">
 
-<script type="module" src="script.js"></script>
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>Modelo</th>
+            <th>Bandas compatibles</th>
+            <th>Subido por</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Samsung Galaxy A12</td>
+            <td>3G 900/2100 - 4G 1800/2600</td>
+            <td>Usuario1</td>
+          </tr>
+          <tr>
+            <td>Xiaomi Redmi Note 9</td>
+            <td>3G 900/2100 - 4G 1800/2600</td>
+            <td>Usuario2</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>💙 Datos aportados por la comunidad</p>
+  </footer>
 </body>
 </html>
