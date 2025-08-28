@@ -1,56 +1,28 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teléfonos Cuba - Revisar</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-  <!-- Navbar -->
-  <header class="navbar">
-    <h1>📱 Teléfonos Cuba</h1>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="revisar.html" class="active">Revisar</a>
-      <a href="subir.html">Subir</a>
-      <a href="login.html">Login</a>
-    </nav>
-  </header>
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teléfonos Cuba — Revisar</title>
+<link rel="stylesheet" href="style.css">
+</head><body data-page="revisar">
+<header class="navbar">
+  <h1>📱 Teléfonos Cuba</h1>
+  <nav>
+    <a href="dashboard.html">Panel</a>
+    <a href="revisar.html" class="active">Revisar</a>
+    <a href="subir.html">Subir</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
 
-  <!-- Lista de modelos -->
-  <main>
-    <section class="card fade-in">
-      <h2>Modelos registrados</h2>
-      <input type="text" class="search" placeholder="🔍 Buscar modelo...">
+<main>
+  <section class="card">
+    <h2>Modelos registrados</h2>
+    <input id="search" class="search" placeholder="Buscar por nombre o modelo...">
+    <div id="results" style="margin-top:.8rem"></div>
+  </section>
+</main>
 
-      <table class="tabla">
-        <thead>
-          <tr>
-            <th>Modelo</th>
-            <th>Bandas compatibles</th>
-            <th>Subido por</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Samsung Galaxy A12</td>
-            <td>3G 900/2100 - 4G 1800/2600</td>
-            <td>Usuario1</td>
-          </tr>
-          <tr>
-            <td>Xiaomi Redmi Note 9</td>
-            <td>3G 900/2100 - 4G 1800/2600</td>
-            <td>Usuario2</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+<footer>🔎 Datos aportados por la comunidad</footer>
 
-  <footer>
-    <p>💙 Datos aportados por la comunidad</p>
-  </footer>
-</body>
-</html>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="app.js"></script>
+</body></html>
