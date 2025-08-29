@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teléfonos Cuba — Recuperar</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="recover">
+<header class="navbar">
+  <h1>📱 Teléfonos Cuba</h1>
+  <nav><a href="recover.html" class="active">Recuperar</a></nav>
+</header>
+
+<main>
+  <section class="card" style="max-width:520px">
+    <h2>Recuperar contraseña</h2>
+    <form id="recover-form" class="form" style="margin-top:.6rem">
+      <input id="recover-email" type="email" placeholder="Correo" required>
+      <button class="btn" type="submit">Enviar enlace</button>
+    </form>
+    <p class="status" style="margin-top:.6rem"></p>
+  </section>
+</main>
+
+<footer>💙 Gracias por apoyar este proyecto</footer>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="app.js"></script>
+</body>
+</html>

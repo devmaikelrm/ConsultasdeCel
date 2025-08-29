@@ -1,110 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard - Teléfonos Cuba</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Teléfonos Cuba</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <!-- Navbar -->
-  <header class="navbar">
-    <h1>📱 Teléfonos Cuba</h1>
-    <nav>
-      <a href="dashboard.html" class="active">Dashboard</a>
-      <a href="revisar.html">Revisar</a>
-      <a href="subir.html">Subir</a>
-      <button id="logout-btn" class="btn" style="margin-left: 1rem;">Cerrar sesión</button>
-    </nav>
-  </header>
+<body data-page="dashboard">
+<header class="navbar">
+<h1>📱 Teléfonos Cuba</h1>
+<nav>
+<a href="dashboard.html" class="active">Dashboard</a>
+<a href="revisar.html">Revisar</a>
+<a href="subir.html">Subir</a>
+<button id="logout-btn" class="btn" style="margin-left:1rem;">Cerrar sesión</button>
+</nav>
+</header>
 
-  <!-- Contenido principal -->
-  <main>
-    <section class="card fade-in" style="max-width: 600px; width: 100%;">
-      <h2>Bienvenido, <span id="user-email">Usuario</span> 👋</h2>
-      <p>Puedes gestionar tu cuenta y acceder a las opciones principales.</p>
+<main>
+<section class="card fade-in" style="max-width:600px;width:100%;">
+<h2>Bienvenido, <span id="user-email">Usuario</span> 👋</h2>
+<p>Puedes gestionar tu cuenta y acceder a las opciones principales.</p>
 
-      <!-- Opciones rápidas -->
-      <div class="options">
-        <a href="subir.html" class="btn">⬆️ Subir modelos</a>
-        <a href="revisar.html" class="btn">🔍 Revisar modelos</a>
-      </div>
+<div class="options">
+<a href="subir.html" class="btn">⬆️ Subir modelos</a>
+<a href="revisar.html" class="btn">🔍 Revisar modelos</a>
+</div>
 
-      <hr style="margin: 1.5rem 0;">
+<hr>
 
-      <!-- Cambiar correo -->
-      <h3>📧 Cambiar correo</h3>
-      <form id="form-cambiar-email" class="form">
-        <input type="email" id="nuevo-email" placeholder="Nuevo correo" required>
-        <button type="submit" class="btn">Actualizar correo</button>
-      </form>
+<h3>📧 Cambiar correo</h3>
+<form id="form-cambiar-email" class="form">
+<input type="email" id="nuevo-email" placeholder="Nuevo correo" required>
+<button type="submit" class="btn">Actualizar correo</button>
+</form>
 
-      <!-- Cambiar contraseña -->
-      <h3 style="margin-top: 2rem;">🔑 Cambiar contraseña</h3>
-      <form id="form-cambiar-pass" class="form">
-        <input type="password" id="nueva-pass" placeholder="Nueva contraseña" required>
-        <button type="submit" class="btn">Actualizar contraseña</button>
-      </form>
-    </section>
-  </main>
+<h3 style="margin-top:2rem;">🔑 Cambiar contraseña</h3>
+<form id="form-cambiar-pass" class="form">
+<input type="password" id="nueva-pass" placeholder="Nueva contraseña" required>
+<button type="submit" class="btn">Actualizar contraseña</button>
+</form>
+<p class="status" style="margin-top:.6rem;color:#5c6773"></p>
+</section>
+</main>
 
-  <footer>
-    <p>💙 Proyecto colaborativo - Teléfonos Cuba</p>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="https://unpkg.com/@supabase/supabase-js"></script>
-  <script src="app.js"></script>
-  <script>
-    // ==========================
-    //  MOSTRAR EMAIL DEL USUARIO
-    // ==========================
-    async function mostrarUsuario() {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        window.location.href = "login.html";
-        return;
-      }
-      document.querySelector("#user-email").textContent = user.email;
-    }
-
-    mostrarUsuario();
-
-    // ==========================
-    //  CAMBIAR CORREO
-    // ==========================
-    const formEmail = document.querySelector("#form-cambiar-email");
-    formEmail.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const nuevoEmail = document.querySelector("#nuevo-email").value.trim();
-
-      const { data, error } = await supabase.auth.updateUser({ email: nuevoEmail });
-
-      if (error) {
-        alert("⚠️ Error al cambiar correo: " + error.message);
-      } else {
-        alert("✅ Correo actualizado. Revisa tu bandeja para confirmar.");
-      }
-    });
-
-    // ==========================
-    //  CAMBIAR CONTRASEÑA
-    // ==========================
-    const formPass = document.querySelector("#form-cambiar-pass");
-    formPass.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const nuevaPass = document.querySelector("#nueva-pass").value.trim();
-
-      const { data, error } = await supabase.auth.updateUser({ password: nuevaPass });
-
-      if (error) {
-        alert("⚠️ Error al cambiar contraseña: " + error.message);
-      } else {
-        alert("✅ Contraseña actualizada correctamente.");
-        formPass.reset();
-      }
-    });
-  </script>
+<footer>💙 Proyecto colaborativo - Teléfonos Cuba</footer>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teléfonos Cuba — Registrarse</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="register">
+<header class="navbar">
+  <h1>📱 Teléfonos Cuba</h1>
+  <nav><a href="register.html" class="active">Registrarse</a></nav>
+</header>
+
+<main>
+  <section class="card" style="max-width:520px">
+    <h2>Crear cuenta</h2>
+    <form id="register-form" class="form" style="margin-top:.6rem">
+      <input id="reg-email" type="email" placeholder="Correo" required>
+      <input id="reg-pass" type="password" placeholder="Contraseña" required>
+      <button class="btn" type="submit">Registrarse</button>
+    </form>
+    <p class="status" style="margin-top:.6rem"></p>
+  </section>
+</main>
+
+<footer>💙 Gracias por apoyar este proyecto</footer>
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script src="app.js"></script>
+</body>
+</html>
