@@ -125,3 +125,11 @@ html[data-page='dashboard'], body[data-page='dashboard']{min-height:100%}
 .spinner{width:28px;height:28px;border-radius:50%;border:3px solid rgba(255,255,255,.22); border-top-color: var(--brand);animation: spin 0.9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
+/* Overrides for donate emoji sizing */
+.badge .emoji{font-size:1em}
+.badge.cup .emoji{font-size:1em}
+.badge.cup .emoji::before{content:none !important}
+
+/* Ensure Cuba flag shown at text size even if markup has 'CU' */
+.badge.cup .emoji{font-size:0 !important}
+.badge.cup .emoji::before{content:'🇨🇺'; font-size:1em;}

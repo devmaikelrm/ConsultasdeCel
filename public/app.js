@@ -84,7 +84,12 @@ function setupNav(isAuth, session){
   $$('.only-auth').forEach(el=> el.style.display = isAuth ? '' : 'none');
   $$('.only-anon').forEach(el=> el.style.display = isAuth ? 'none' : '');
   $$('.user-email').forEach(el=> el.textContent = isAuth ? (session.user.email||'') : '');
-  $$('.btn-logout').forEach(btn=> btn.addEventListener('click', async ()=>{ await sb.auth.signOut(); window.location.replace('login.html'); }));
+  $$('.btn-logout').forEach(btn=> btn.addEventListener('click', async ()=>{
+    const ok = confirm('¿Seguro que quieres cerrar sesión?');
+    if(!ok) return;
+    try{ await sb.auth.signOut(); }catch{}
+    window.location.replace('login.html');
+  }));
   $$('.btn-back').forEach(btn=> btn.addEventListener('click', ()=>{
     try{
       if(history.length > 1) history.back(); else window.location.href = 'index.html';
