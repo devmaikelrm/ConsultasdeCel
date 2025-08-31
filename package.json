@@ -1,0 +1,20 @@
+{
+  "name": "consultasdecel",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "format": "prettier . --write",
+    "lint:js": "eslint . --ext .js",
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint:html": "html-validate \"**/*.html\"",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html"
+  },
+  "devDependencies": {
+    "eslint": "^9.9.0",
+    "eslint-plugin-security": "^3.0.1",
+    "html-validate": "^8.13.0",
+    "prettier": "^3.3.3",
+    "stylelint": "^16.8.1",
+    "stylelint-config-standard": "^36.0.0"
+  }
+}

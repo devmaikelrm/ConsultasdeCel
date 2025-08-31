@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "html-validate:recommended"
+  ],
+  "rules": {
+    "wcag/h32": "warn",
+    "no-trailing-whitespace": "error",
+    "prefer-button": "warn"
+  }
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard — Teléfonos Cuba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body data-page="dashboard">
+<header class="navbar">
+  <div class="container">
+    <a class="brand" href="index.html"><span class="logo">📱</span> Consultas de Cel</a>
+    <div class="nav-actions">
+      <span class="user-email only-auth"></span>
+      <button type="button" class="btn btn-logout only-auth">Cerrar sesión</button>
+    </div>
+  </div>
+  </header>
+
+<main class="container narrow">
+  <section class="card glass">
+    <h2>Bienvenido, <span id="user-email" class="muted">Invitado</span></h2>
+    <p class="muted">Acceso rápido a las opciones principales:</p>
+    <div class="row" style="margin:.6rem 0 1rem">
+      <a href="subir.html" class="btn">Subir modelos</a>
+      <a href="revisar.html" class="btn outline">Revisar modelos</a>
+    </div>
+    <hr>
+    <h3>Editar perfil</h3>
+    <div class="settings-head">
+      <img id="avatar-img" alt="Avatar" class="avatar-circle" width="64" height="64">
+      <span class="muted">Vista previa de tu avatar</span>
+    </div>
+    <form id="profile-form" class="form">
+      <label>Nuevo correo <input id="new-email" type="email" placeholder="tu@correo.com"></label>
+      <label>Foto de perfil <input id="avatar-file" type="file" accept="image/*"></label>
+      <button class="btn" type="submit">Guardar cambios</button>
+      <p class="status"></p>
+    </form>
+  </section>
+  </main>
+
+<footer class="footer">
+  <div class="container"><p>Proyecto colaborativo — Teléfonos Cuba</p></div>
+</footer>
+</body>
+<!-- Modal de aviso -->
+<div id="modal-backdrop" class="backdrop"></div>
+<div id="modal-aviso" class="modal">
+  <div class="panel">
+    <h2>Aviso y propósito</h2>
+    <p class="muted">Este proyecto comunitario permite consultar y aportar compatibilidad de teléfonos en Cuba. La infraestructura es gratuita y tiene límites, por lo que puede haber:</p>
+    <ul>
+      <li>Retrasos al iniciar sesión o al recibir correos de recuperación.</li>
+      <li>Cupos diarios de lecturas/escrituras y almacenamiento.</li>
+      <li>Intermitencias cuando hay muchos usuarios a la vez.</li>
+    </ul>
+    <div class="btns">
+      <button id="btn-cerrar-aviso" class="btn" type="button">Entendido</button>
+    </div>
+  </div>
+  </div>
+</html>
+

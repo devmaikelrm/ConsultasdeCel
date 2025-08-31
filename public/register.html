@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrarse — Teléfonos Cuba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body data-page="register">
+<header class="navbar">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">Consultas de Cel</a>
+    <nav class="nav-links"></nav>
+  </div>
+</header>
+<main class="container narrow">
+  <section class="card glass">
+    <h2>Crea tu cuenta</h2>
+    <form id="register-form" class="form">
+      <label>Correo <input id="reg-email" type="email" required></label>
+      <label>Contraseña <input id="reg-pass" type="password" required minlength="6"></label>
+      <button class="btn" type="submit">Registrarse</button>
+      <p class="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container"><p>Proyecto colaborativo — Teléfonos Cuba</p></div>
+</footer>
+</body></html>
+

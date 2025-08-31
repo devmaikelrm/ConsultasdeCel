@@ -1,17 +1,38 @@
-# ConsultasdeCel
+# Consultas de Cel — Supabase (esquema simple)
+Esquema sin tester/email/created_at. Solo: commercial_name, model, bands, provinces.
 
-Este proyecto permite gestionar y consultar teléfonos en Cuba. Incluye funcionalidades de registro, revisión y subida de datos.
+## Configurar Supabase
+1) Crea un proyecto en Supabase y copia:
+   - SUPABASE_URL
+   - anon public key
+2) Edita `config.js` con esos valores.
 
-## Estructura
-- `index.html`: Página principal
-- `login.html`: Inicio de sesión
-- `revisar.html`: Revisión de datos
-- `subir.html`: Subida de datos
-- `script.js`: Lógica de la aplicación
-- `style.css`: Estilos
+## Crear tabla
+```sql
+create table if not exists phones (
+  id serial primary key,
+  commercial_name text not null,
+  model           text not null,
+  bands           text not null,
+  provinces       text
+);
+```
 
-## Uso
-Abre `index.html` en tu navegador para comenzar.
+## RLS (seguridad)
+Activa RLS en `phones` y añade:
 
-## Autor
-Desarrollado por devmaikelrm.
+```sql
+create policy "read phones" on public.phones
+for select to authenticated
+using (true);
+
+create policy "insert phones" on public.phones
+for insert to authenticated
+with check (auth.uid() is not null);
+```
+
+## Flujo
+- `register.html` → crear cuenta
+- `login.html` → entrar
+- `subir.html` → guardar modelo (requiere login)
+- `revisar.html` → ver y buscar modelos

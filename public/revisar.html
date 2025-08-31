@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revisar — Teléfonos Cuba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body data-page="revisar">
+<header class="navbar">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">Consultas de Cel</a>
+    <nav class="nav-links">
+      <a href="revisar.html">Revisar</a>
+      <a href="subir.html">Subir</a>
+      <button id="logout-btn" class="link btn-logout only-auth" type="button" style="display:none">Cerrar sesión</button>
+    </nav>
+  </div>
+</header>
+<main class="container">
+  <section class="card glass">
+    <h2>Modelos registrados</h2>
+    <input id="search" class="search" placeholder="Buscar por nombre o modelo…">
+    <div id="results" class="list"></div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container"><p>Proyecto colaborativo — Teléfonos Cuba</p></div>
+</footer>
+<!-- Modal de aviso -->
+<div id="modal-backdrop" class="backdrop"></div>
+<div id="modal-aviso" class="modal">
+  <div class="panel">
+    <h2>Aviso y propósito</h2>
+    <p class="muted">Este proyecto comunitario permite consultar y aportar compatibilidad de teléfonos en Cuba. La infraestructura es gratuita y tiene límites, por lo que puede haber:</p>
+    <ul>
+      <li>Retrasos al iniciar sesión o al recibir correos de recuperación.</li>
+      <li>Cupos diarios de lecturas/escrituras y almacenamiento.</li>
+      <li>Intermitencias cuando hay muchos usuarios a la vez.</li>
+    </ul>
+    <div class="btns">
+      <button id="btn-cerrar-aviso" class="btn" type="button">Entendido</button>
+    </div>
+  </div>
+  </div>
+</body></html>
