@@ -70,7 +70,7 @@ async function guardRoutes(){
   setupNav(isAuth, session);
   if(page==='login'){ toggleLoginPanels(true); setupLogin(); }
   if(page==='dashboard') setupDashboard();
-  if(page==='subir') setupSubirManual(); // solo formulario, sin CSV
+  if(page==='subir') setupSubir();
   if(page==='revisar') setupList();
   if(page==='recover') setupRecover();
   if(page==='change') setupChange();
@@ -282,16 +282,34 @@ function setupDashboard(){
   }
 }
 
-// Subir manual (sin CSV) — procesa un formulario simple
-function setupSubirManual(){
+// Subir modelo: inserta en Supabase (tabla public.phones)
+function setupSubir(){
   const form = document.querySelector('#form-subir');
   if(!form) return;
   const status = form.querySelector('.status');
   form.addEventListener('submit', async (e)=>{
     e.preventDefault();
-    status.textContent = 'Enviando…';
-    // Aquí podrías capturar campos y hacer sb.from('phones').insert(...)
-    setTimeout(()=>{ status.textContent = 'Listo. Formulario enviado con éxito'; form.reset(); }, 400);
+    const commercial_name = document.getElementById('commercial_name')?.value?.trim();
+    const model = document.getElementById('model')?.value?.trim();
+    const bands = document.getElementById('bands')?.value?.trim();
+    const provinces = document.getElementById('provinces')?.value?.trim();
+    if(!commercial_name || !model || !bands){
+      status.textContent = 'Faltan campos obligatorios';
+      showToast('Completa los campos obligatorios', 'err');
+      return;
+    }
+    status.textContent = 'Guardando…';
+    try{
+      const payload = { commercial_name, model, bands, provinces: provinces || null };
+      const { error } = await sb.from('phones').insert([payload]);
+      if(error) throw error;
+      status.textContent = `Listo. Guardado (${model})`;
+      showToast('Modelo guardado', 'ok');
+      form.reset();
+    }catch(err){
+      status.textContent = 'Ups: ' + (err?.message||err);
+      showToast('No se pudo guardar: ' + (err?.message||err), 'err');
+    }
   });
 }
 
