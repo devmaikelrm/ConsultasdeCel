@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url=public/index.html">
+  <title>Redirigiendo…</title>
+  <script>
+    (function(){
+      var p = location.pathname;
+      // Si estamos en GitHub Pages con deploy desde rama, redirige a /public/
+      var target = (p.endsWith('/')?p:p.replace(/\/[^\/]*$/, '/')) + 'public/index.html';
+      location.replace(target);
+    })();
+  </script>
+</head>
+<body>
+  Redirigiendo… Si no avanza automáticamente, abre <a href="public/index.html">public/index.html</a>.
+</body>
+</html>
+
