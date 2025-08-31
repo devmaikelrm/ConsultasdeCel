@@ -1,11 +1,11 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.supabase.co; connect-src https://*.supabase.co; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
-  <title>Dashboard — Teléfonos Cuba</title>
+  <title>Dashboard â€” TelÃ©fonos Cuba</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,13 +18,13 @@
 <body data-page="dashboard">
   <header class="topbar" role="banner">
     <div class="topbar__inner">
-      <a class="brand" href="index.html"><span class="logo">📱</span> Consultas de Cel</a>
+      <a class="brand" href="index.html"><span class="logo">ðŸ“±</span> Consultas de Cel</a>
       <nav class="topnav" aria-label="Principal">
         <a href="index.html" class="link">Inicio</a>
         <a href="revisar.html" class="link">Revisar</a>
         <a href="subir.html" class="link">Subir</a>
         <a id="btn-open-aviso" class="link" href="#">Aviso</a>
-        <button class="link btn-back" type="button" aria-label="Atrás">Atrás</button>
+        <button class="link btn-back" type="button" aria-label="AtrÃ¡s">AtrÃ¡s</button>
         <span class="user-email only-auth" aria-live="polite"></span>
         <button type="button" class="link btn-logout only-auth" aria-label="Cerrar sesión">Cerrar sesión</button>
         <a class="link only-anon" href="login.html">Iniciar sesión</a>
@@ -45,24 +45,24 @@
     </aside>
 
     <main class="main" role="main">
-      <h1 class="h1">Acceso rápido</h1>
+      <h1 class="h1">Acceso rÃ¡pido</h1>
       <div class="quick">
         <a href="subir.html" class="action action--primary only-auth" aria-describedby="desc-subir">
-          <span class="action__icon">⬆️</span>
+          <span class="action__icon">â¬†ï¸</span>
           <div class="action__text">
             <h2>Subir modelos</h2>
             <p id="desc-subir">Agrega nuevos equipos a la base.</p>
           </div>
         </a>
         <a href="login.html" class="action action--primary only-anon" aria-disabled="true" aria-describedby="desc-subir-guest">
-          <span class="action__icon">🔒</span>
+          <span class="action__icon">ðŸ”’</span>
           <div class="action__text">
             <h2>Subir modelos</h2>
             <p id="desc-subir-guest">Inicia sesión para poder subir.</p>
           </div>
         </a>
         <a href="revisar.html" class="action action--secondary" aria-describedby="desc-revisar">
-          <span class="action__icon">🔎</span>
+          <span class="action__icon">ðŸ”Ž</span>
           <div class="action__text">
             <h2>Revisar modelos</h2>
             <p id="desc-revisar">Busca y valida modelos existentes.</p>
@@ -70,24 +70,24 @@
         </a>
       </div>
 
-      <section class="grid2" aria-label="Información">
+      <section class="grid2" aria-label="InformaciÃ³n">
         <div class="card pad" role="region" aria-labelledby="avisos-title">
           <h2 id="avisos-title" class="h2">Avisos</h2>
           <ul class="muted">
             <li>Los correos de recuperación pueden demorar.</li>
-            <li>Se aplican límites gratuitos de Supabase.</li>
+            <li>Se aplican lÃ­mites gratuitos de Supabase.</li>
           </ul>
         </div>
         <div class="card pad" role="region" aria-labelledby="ayuda-title">
-          <h2 id="ayuda-title" class="h2">Ayuda rápida</h2>
-          <p class="muted">Consulta y sube modelos compatibles con Cuba. Si ves errores, escríbenos.</p>
+          <h2 id="ayuda-title" class="h2">Ayuda rÃ¡pida</h2>
+          <p class="muted">Consulta y sube modelos compatibles con Cuba. Si ves errores, escrÃ­benos.</p>
         </div>
       </section>
     </main>
   </div>
 
   <footer class="footer">
-    <div class="container"><p>Proyecto colaborativo — Teléfonos Cuba</p></div>
+    <div class="container"><p>Proyecto colaborativo â€” TelÃ©fonos Cuba</p></div>
   </footer>
 
   <!-- Drawer de perfil -->
@@ -96,7 +96,7 @@
     <div class="drawer__panel">
       <div class="drawer__head">
         <h2 id="profile-title" class="h2">Editar perfil</h2>
-        <button id="profile-close" class="link" type="button" aria-label="Cerrar">✕</button>
+        <button id="profile-close" class="link" type="button" aria-label="Cerrar">âœ•</button>
       </div>
       <form id="profile-form" class="form" autocomplete="on">
         <label>Nuevo correo <input id="new-email" type="email" placeholder="tu@correo.com" autocomplete="email"></label>
@@ -112,7 +112,7 @@
   <div id="modal-aviso" class="modal">
     <div class="panel">
       <h2>Aviso y propósito</h2>
-      <p class="muted">Este proyecto comunitario permite consultar y aportar compatibilidad de teléfonos en Cuba. La infraestructura es gratuita y tiene límites, por lo que puede haber:</p>
+      <p class="muted">Este proyecto comunitario permite consultar y aportar compatibilidad de telÃ©fonos en Cuba. La infraestructura es gratuita y tiene lÃ­mites, por lo que puede haber:</p>
       <ul>
         <li>Retrasos al iniciar sesión o al recibir correos de recuperación.</li>
         <li>Cupos diarios de lecturas/escrituras y almacenamiento.</li>
@@ -125,4 +125,5 @@
   </div>
 </body>
 </html>
+
 
