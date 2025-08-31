@@ -85,6 +85,11 @@ function setupNav(isAuth, session){
   $$('.only-anon').forEach(el=> el.style.display = isAuth ? 'none' : '');
   $$('.user-email').forEach(el=> el.textContent = isAuth ? (session.user.email||'') : '');
   $$('.btn-logout').forEach(btn=> btn.addEventListener('click', async ()=>{ await sb.auth.signOut(); window.location.replace('login.html'); }));
+  $$('.btn-back').forEach(btn=> btn.addEventListener('click', ()=>{
+    try{
+      if(history.length > 1) history.back(); else window.location.href = 'index.html';
+    }catch{ window.location.href = 'index.html'; }
+  }));
 }
 
 // Login (email/password + OAuth)
