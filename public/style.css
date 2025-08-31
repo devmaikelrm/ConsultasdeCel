@@ -80,8 +80,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0
 .badge.paypal{background:linear-gradient(135deg,#003087,#009cde);border-color:transparent;color:#fff}
 
 /* Modal */
-.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(2px);display:none}
-.modal{position:fixed;inset:0;display:none;place-items:center;padding:16px}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(2px);display:none;z-index:9998}
+.modal{position:fixed;inset:0;display:none;place-items:center;padding:16px;z-index:9999}
 .modal .panel{width:min(720px,92%);background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius);padding:20px}
 .modal .panel h2{margin-top:0}
 .modal.open,.backdrop.open{display:grid}

@@ -197,14 +197,21 @@ function setupIntroModal(){
   const modal = document.getElementById('modal-aviso');
   const backdrop = document.getElementById('modal-backdrop');
   const closeBtn = document.getElementById('btn-cerrar-aviso');
+  const openBtn = document.getElementById('btn-open-aviso');
   if(!modal || !backdrop) return;
   const open = ()=>{ modal.classList.add('open'); backdrop.classList.add('open'); };
   const close = ()=>{ modal.classList.remove('open'); backdrop.classList.remove('open'); };
-  if(localStorage.getItem('intro_seen')!=='1'){
-    open();
-  }
+  // Open once by default unless dismissed; allow force via ?aviso=1 or #aviso
+  try{
+    const usp = new URLSearchParams(location.search);
+    const force = usp.get('aviso') === '1' || /(^|#)aviso(=1)?/.test(location.hash||'');
+    if(force || localStorage.getItem('intro_seen')!=='1'){
+      open();
+    }
+  }catch{ if(localStorage.getItem('intro_seen')!=='1') open(); }
   closeBtn?.addEventListener('click', ()=>{ localStorage.setItem('intro_seen','1'); close(); });
   backdrop?.addEventListener('click', ()=>{ localStorage.setItem('intro_seen','1'); close(); });
+  openBtn?.addEventListener('click', (e)=>{ e.preventDefault?.(); open(); });
 }
 
 function escapeHTML(s=''){
