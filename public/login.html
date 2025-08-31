@@ -3,50 +3,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/ConsultasdeCel/">
   <title>Login — Teléfonos Cuba</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.supabase.co; connect-src https://*.supabase.co; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="styles.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" integrity="sha256-lid+wA4Z30dtc5aoolhrQe0QM9z2gPWqebDFVgWXkrg=" crossorigin="anonymous" defer></script>
   <script src="config.js" defer></script>
   <script src="app.js" defer></script>
-  <script src="script.js" defer></script>
-  <meta name="color-scheme" content="dark light">
 </head>
 <body data-page="login">
-<header class="navbar">
-  <div class="container nav-inner">
+<header class="topbar">
+  <div class="topbar__inner">
     <a class="brand" href="index.html">Consultas de Cel</a>
-    <nav class="nav-links">
-      
-      
+    <nav class="nav">
       <a id="btn-open-aviso" class="link" href="#">Aviso</a>
-      <a class="link only-auth" href="dashboard.html">Mi cuenta</a>
       <span class="user-email only-auth"></span>
+      <a class="link only-auth" href="dashboard.html">Mi cuenta</a>
       <button class="link btn-logout only-auth" type="button">Cerrar sesión</button>
-      <a class="link only-anon" href="login.html">Iniciar sesión</a>
-      <a class="link only-anon" href="register.html">Crear cuenta</a>
     </nav>
   </div>
 </header>
 
-<main class="container narrow">
-  <section class="card glass">
-    <h2>Inicia sesión</h2>
-    <form id="login-form" class="form">
-      <label>Correo <input id="email" type="email" autocomplete="email" required></label>
-      <label>Contraseña <input id="password" type="password" autocomplete="current-password" required minlength="6"></label>
-      <button class="btn" type="submit">Entrar</button>
-      <div class="row-between">
-        <button class="link" id="reset-btn" type="button">Â¿Olvidaste la Contraseña?</button>
-        <a class="link" href="register.html">Crear cuenta</a>
+<main class="center">
+  <section class="card" aria-labelledby="login-title">
+    <h1 id="login-title" class="h1">Inicia sesión</h1>
+    <p class="muted">Bienvenido. Accede con tu correo y contraseña.</p>
+    <form id="login-form" class="form" novalidate>
+      <div class="group">
+        <label for="email">Correo</label>
+        <input id="email" class="input" type="email" autocomplete="email" required>
+        <div class="error" id="err-email"></div>
       </div>
-      <div class="row" style="margin-top:.5rem">
-        <button id="login-google" class="btn outline" type="button">Continuar con Google</button>
-        <button id="login-github" class="btn outline" type="button">Continuar con GitHub</button>
+      <div class="group">
+        <label for="password">Contraseña</label>
+        <input id="password" class="input" type="password" autocomplete="current-password" minlength="6" required>
+        <div class="error" id="err-pass"></div>
+      </div>
+      <button class="btn primary block" type="submit">Entrar</button>
+      <div class="between">
+        <button class="link" id="reset-btn" type="button">¿Olvidaste la contraseña?</button>
+        <a class="link" href="registro.html">Crear cuenta</a>
+      </div>
+      <div class="row">
+        <button id="login-google" class="btn secondary block" type="button">Continuar con Google</button>
+        <button id="login-github" class="btn secondary block" type="button">Continuar con GitHub</button>
       </div>
       <p class="status" aria-live="polite"></p>
       <p class="form-status" aria-live="polite"></p>
@@ -56,15 +59,7 @@
 
 <footer class="footer">
   <div class="container">
-    <p>Proyecto colaborativo â€” TelÃ©fonos Cuba</p>
-    <div class="badges" style="justify-content:center;margin-top:.4rem">
-      <a class="badge paypal" href="https://www.paypal.me/MReyesMorales343" target="_blank" rel="noopener noreferrer">
-        <span class="emoji" aria-hidden="true">ðŸ’¸</span> PayPal
-      </a>
-      <span class="badge cup subtle">
-        <span class="emoji" aria-hidden="true">ðŸ‡¨ðŸ‡º</span> Tarjeta (CUP): <b>9238 1299 7063 1810</b>
-      </span>
-    </div>
+    <p>Proyecto colaborativo — Teléfonos Cuba</p>
   </div>
 </footer>
 
@@ -73,18 +68,11 @@
 <div id="modal-aviso" class="modal">
   <div class="panel">
     <h2>Aviso y propósito</h2>
-    <p class="muted">Este proyecto comunitario permite consultar y aportar compatibilidad de telÃ©fonos en Cuba. La infraestructura es gratuita y tiene límites, por lo que puede haber:</p>
-    <ul>
-      <li>Retrasos al Iniciar sesión o al recibir correos de recuperación.</li>
-      <li>Cupos diarios de lecturas/escrituras y almacenamiento.</li>
-      <li>Intermitencias cuando hay muchos usuarios a la vez.</li>
-    </ul>
+    <p class="muted">Este proyecto comunitario permite consultar y aportar compatibilidad de teléfonos en Cuba. La infraestructura es gratuita y tiene límites.</p>
     <div class="btns">
-      <button id="btn-cerrar-aviso" class="btn" type="button">Entendido</button>
+      <button id="btn-cerrar-aviso" class="btn primary" type="button">Entendido</button>
     </div>
   </div>
 </div>
 </body>
 </html>
-
-

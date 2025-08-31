@@ -1,0 +1,80 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/ConsultasdeCel/">
+  <title>Editar perfil — Teléfonos Cuba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.supabase.co; connect-src https://*.supabase.co; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <link href="styles.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" integrity="sha256-lid+wA4Z30dtc5aoolhrQe0QM9z2gPWqebDFVgWXkrg=" crossorigin="anonymous" defer></script>
+  <script src="config.js" defer></script>
+  <script src="profile.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="dashboard.html">Consultas de Cel</a>
+    <nav class="nav">
+      <span id="nav-email" class="muted"></span>
+      <a class="link" href="dashboard.html">Dashboard</a>
+      <button id="btn-logout" class="link" type="button">Cerrar sesión</button>
+    </nav>
+  </div>
+</header>
+
+<section class="profile-wrap">
+  <div class="profile-card">
+    <img id="avatar-preview" class="avatar" alt="Avatar" width="96" height="96">
+    <form id="profile-form" class="profile-form" novalidate>
+      <div class="row">
+        <input id="avatar-file" class="input" type="file" accept="image/*">
+        <button id="btn-upload" class="btn secondary" type="button">Subir avatar</button>
+      </div>
+      <div class="row">
+        <div class="group" style="flex:1">
+          <label for="full-name">Nombre</label>
+          <input id="full-name" class="input" type="text" placeholder="Tu nombre">
+          <div class="error" id="err-name"></div>
+        </div>
+        <div class="group" style="flex:1">
+          <label for="phone">Teléfono</label>
+          <input id="phone" class="input" type="tel" placeholder="5XXXXXXXX">
+          <div class="error" id="err-phone"></div>
+        </div>
+      </div>
+      <div class="group">
+        <label for="province">Provincia</label>
+        <select id="province" class="select" required>
+          <option value="" disabled selected>Selecciona la provincia…</option>
+          <option>Pinar del Río</option>
+          <option>Artemisa</option>
+          <option>La Habana</option>
+          <option>Mayabeque</option>
+          <option>Matanzas</option>
+          <option>Cienfuegos</option>
+          <option>Villa Clara</option>
+          <option>Sancti Spíritus</option>
+          <option>Ciego de Ávila</option>
+          <option>Camagüey</option>
+          <option>Las Tunas</option>
+          <option>Holguín</option>
+          <option>Granma</option>
+          <option>Santiago de Cuba</option>
+          <option>Guantánamo</option>
+          <option>Isla de la Juventud</option>
+        </select>
+        <div class="error" id="err-province"></div>
+      </div>
+      <div class="actions">
+        <button class="btn primary" type="submit">Guardar cambios</button>
+      </div>
+      <p class="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</body>
+</html>
