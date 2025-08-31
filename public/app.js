@@ -193,7 +193,7 @@ function setupRecover(){
 }
 
 // Intro modal (aviso de propósito y limitaciones)
-function setupIntroModal(){
+async function setupIntroModal(){
   const modal = document.getElementById('modal-aviso');
   const backdrop = document.getElementById('modal-backdrop');
   const closeBtn = document.getElementById('btn-cerrar-aviso');
@@ -201,16 +201,38 @@ function setupIntroModal(){
   if(!modal || !backdrop) return;
   const open = ()=>{ modal.classList.add('open'); backdrop.classList.add('open'); };
   const close = ()=>{ modal.classList.remove('open'); backdrop.classList.remove('open'); };
-  // Open once by default unless dismissed; allow force via ?aviso=1 or #aviso
+
+  const page = (document.body.dataset.page||'').toLowerCase();
+  const seenKey = 'intro_seen_v1';
+  let seen = localStorage.getItem(seenKey) === '1';
+  // Intentar leer preferencia por usuario (user_metadata)
+  try{
+    const { data: { user } } = await sb.auth.getUser();
+    if(user && user.user_metadata && user.user_metadata[seenKey] === true){
+      seen = true;
+    }
+  }catch{}
+
+  // Abrir automáticamente SOLO en login y solo una vez (por navegador)
+  // Casos que fuerzan apertura: ?aviso=1 o #aviso, o al venir de registro (?registered=1)
   try{
     const usp = new URLSearchParams(location.search);
-    const force = usp.get('aviso') === '1' || /(^|#)aviso(=1)?/.test(location.hash||'');
-    if(force || localStorage.getItem('intro_seen')!=='1'){
-      open();
-    }
-  }catch{ if(localStorage.getItem('intro_seen')!=='1') open(); }
-  closeBtn?.addEventListener('click', ()=>{ localStorage.setItem('intro_seen','1'); close(); });
-  backdrop?.addEventListener('click', ()=>{ localStorage.setItem('intro_seen','1'); close(); });
+    const force = usp.get('aviso') === '1' || usp.get('registered') === '1' || /(^|#)aviso(=1)?/.test(location.hash||'');
+    if(force || (page==='login' && !seen)) open();
+  }catch{
+    if(page==='login' && !seen) open();
+  }
+
+  const markSeen = async ()=>{
+    try{ localStorage.setItem(seenKey,'1'); }catch{}
+    // Persistir en user_metadata si hay sesión
+    try{
+      const { data: { user } } = await sb.auth.getUser();
+      if(user){ await sb.auth.updateUser({ data: { [seenKey]: true } }); }
+    }catch{}
+  };
+  closeBtn?.addEventListener('click', ()=>{ markSeen(); close(); });
+  backdrop?.addEventListener('click', ()=>{ markSeen(); close(); });
   openBtn?.addEventListener('click', (e)=>{ e.preventDefault?.(); open(); });
 }
 
@@ -362,6 +384,8 @@ function setupRegister(){
       if(status) status.textContent = `Listo. Revisa tu correo: ${email}`;
       showToast('Registro creado. Revisa tu correo', 'ok');
       form.reset();
+      // Tras registro, enviar al login y forzar el aviso una sola vez
+      setTimeout(()=>{ window.location.replace('login.html?registered=1'); }, 800);
     }catch(err){
       if(status) status.textContent = 'Ups: ' + (err?.message||err);
       showToast('No se pudo registrar: ' + (err?.message||err), 'err');
