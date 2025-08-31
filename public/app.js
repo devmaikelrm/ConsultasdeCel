@@ -331,7 +331,7 @@ function setupSubir(){
     const commercial_name = document.getElementById('commercial_name')?.value?.trim();
     const model = document.getElementById('model')?.value?.trim();
     const bands = document.getElementById('bands')?.value?.trim();
-    const provinces = document.getElementById('province')?.value?.trim();
+    const provinces = document.getElementById('provinces')?.value?.trim();
     if(!commercial_name || !model || !bands){
       status.textContent = 'Faltan campos obligatorios';
       showToast('Completa los campos obligatorios', 'err');
@@ -420,7 +420,6 @@ function setupChange(){
     }
   });
 }
-
 
 
 
