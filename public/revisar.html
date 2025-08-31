@@ -1,14 +1,12 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Revisar — Teléfonos Cuba</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  `<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="strict-origin-when-cross-origin">`n  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.supabase.co; connect-src https://*.supabase.co; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">`n<title>Revisar â€” TelÃ©fonos Cuba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">`n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`n  <link rel="preconnect" href="https://fonts.googleapis.com">`n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`n  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" integrity="sha256-lid+wA4Z30dtc5aoolhrQe0QM9z2gPWqebDFVgWXkrg=" crossorigin="anonymous" defer></script>
   <script src="config.js" defer></script>
   <script src="app.js" defer></script>
 </head>
@@ -21,11 +19,11 @@
       <a href="revisar.html">Revisar</a>
       <a href="subir.html">Subir</a>
       <a id="btn-open-aviso" class="link" href="#">Aviso</a>
-      <button class="link btn-back" type="button">Atrás</button>
+      <button class="link btn-back" type="button">AtrÃ¡s</button>
       <a class="link only-auth" href="dashboard.html">Mi cuenta</a>
       <span class="user-email only-auth"></span>
-      <button id="logout-btn" class="link btn-logout only-auth" type="button" style="display:none">Cerrar sesión</button>
-      <a class="link only-anon" href="login.html">Iniciar sesión</a>
+      <button id="logout-btn" class="link btn-logout only-auth" type="button" style="display:none">Cerrar sesiÃ³n</button>
+      <a class="link only-anon" href="login.html">Iniciar sesiÃ³n</a>
       <a class="link only-anon" href="register.html">Crear cuenta</a>
     </nav>
   </div>
@@ -33,21 +31,21 @@
 <main class="container">
   <section class="card glass">
     <h2>Modelos registrados</h2>
-    <input id="search" class="search" placeholder="Buscar por nombre o modelo…">
+    <input id="search" class="search" placeholder="Buscar por nombre o modeloâ€¦">
     <div id="results" class="list"></div>
   </section>
 </main>
 <footer class="footer">
-  <div class="container"><p>Proyecto colaborativo — Teléfonos Cuba</p></div>
+  <div class="container"><p>Proyecto colaborativo â€” TelÃ©fonos Cuba</p></div>
 </footer>
 <!-- Modal de aviso -->
 <div id="modal-backdrop" class="backdrop"></div>
 <div id="modal-aviso" class="modal">
   <div class="panel">
-    <h2>Aviso y propósito</h2>
-    <p class="muted">Este proyecto comunitario permite consultar y aportar compatibilidad de teléfonos en Cuba. La infraestructura es gratuita y tiene límites, por lo que puede haber:</p>
+    <h2>Aviso y propÃ³sito</h2>
+    <p class="muted">Este proyecto comunitario permite consultar y aportar compatibilidad de telÃ©fonos en Cuba. La infraestructura es gratuita y tiene lÃ­mites, por lo que puede haber:</p>
     <ul>
-      <li>Retrasos al iniciar sesión o al recibir correos de recuperación.</li>
+      <li>Retrasos al iniciar sesiÃ³n o al recibir correos de recuperaciÃ³n.</li>
       <li>Cupos diarios de lecturas/escrituras y almacenamiento.</li>
       <li>Intermitencias cuando hay muchos usuarios a la vez.</li>
     </ul>
@@ -57,3 +55,4 @@
   </div>
   </div>
 </body></html>
+

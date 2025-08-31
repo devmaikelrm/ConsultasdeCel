@@ -3,75 +3,126 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.supabase.co; connect-src https://*.supabase.co; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
   <title>Dashboard — Teléfonos Cuba</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" integrity="sha256-lid+wA4Z30dtc5aoolhrQe0QM9z2gPWqebDFVgWXkrg=" crossorigin="anonymous" defer></script>
   <script src="config.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body data-page="dashboard">
-<header class="navbar">
-  <div class="container nav-inner">
-    <a class="brand" href="index.html"><span class="logo">📱</span> Consultas de Cel</a>
-    <nav class="nav-links">
-      <a href="index.html" class="link">Volver al inicio</a>
-      <a href="revisar.html">Revisar</a>
-      <a href="subir.html">Subir</a>
-      <a id="btn-open-aviso" class="link" href="#">Aviso</a>
-      <button class="link btn-back" type="button">Atrás</button>
-      <a class="link only-auth" href="dashboard.html">Mi cuenta</a>
-      <span class="user-email only-auth"></span>
-      <button type="button" class="link btn-logout only-auth">Cerrar sesión</button>
-      <a class="link only-anon" href="login.html">Iniciar sesión</a>
-      <a class="link only-anon" href="register.html">Crear cuenta</a>
-    </nav>
-  </div>
+  <header class="topbar" role="banner">
+    <div class="topbar__inner">
+      <a class="brand" href="index.html"><span class="logo">📱</span> Consultas de Cel</a>
+      <nav class="topnav" aria-label="Principal">
+        <a href="index.html" class="link">Inicio</a>
+        <a href="revisar.html" class="link">Revisar</a>
+        <a href="subir.html" class="link">Subir</a>
+        <a id="btn-open-aviso" class="link" href="#">Aviso</a>
+        <button class="link btn-back" type="button" aria-label="Atrás">Atrás</button>
+        <span class="user-email only-auth" aria-live="polite"></span>
+        <button type="button" class="link btn-logout only-auth" aria-label="Cerrar sesión">Cerrar sesión</button>
+        <a class="link only-anon" href="login.html">Iniciar sesión</a>
+        <a class="link only-anon" href="register.html">Crear cuenta</a>
+      </nav>
+    </div>
   </header>
 
-<main class="container narrow">
-  <section class="card glass">
-    <h2>Bienvenido, <span id="user-email" class="muted">Invitado</span></h2>
-    <p class="muted">Acceso rápido a las opciones principales:</p>
-    <div class="row" style="margin:.6rem 0 1rem">
-      <a href="subir.html" class="btn">Subir modelos</a>
-      <a href="revisar.html" class="btn outline">Revisar modelos</a>
-    </div>
-    <hr>
-    <h3>Editar perfil</h3>
-    <div class="settings-head">
-      <img id="avatar-img" alt="Avatar" class="avatar-circle" width="64" height="64">
-      <span class="muted">Vista previa de tu avatar</span>
-    </div>
-    <form id="profile-form" class="form">
-      <label>Nuevo correo <input id="new-email" type="email" placeholder="tu@correo.com"></label>
-      <label>Foto de perfil <input id="avatar-file" type="file" accept="image/*"></label>
-      <button class="btn" type="submit">Guardar cambios</button>
-      <p class="status"></p>
-    </form>
-  </section>
-  </main>
+  <div class="layout" role="presentation">
+    <aside class="sidebar" aria-label="Usuario">
+      <div class="usercard card">
+        <img id="avatar-img" alt="Avatar del usuario" class="avatar" width="64" height="64">
+        <div class="usercard__info">
+          <div id="user-email" class="usercard__name">Invitado</div>
+          <button id="btn-edit-profile" class="btn outline" type="button" aria-haspopup="dialog">Editar perfil</button>
+        </div>
+      </div>
+    </aside>
 
-<footer class="footer">
-  <div class="container"><p>Proyecto colaborativo — Teléfonos Cuba</p></div>
-</footer>
-</body>
-<!-- Modal de aviso -->
-<div id="modal-backdrop" class="backdrop"></div>
-<div id="modal-aviso" class="modal">
-  <div class="panel">
-    <h2>Aviso y propósito</h2>
-    <p class="muted">Este proyecto comunitario permite consultar y aportar compatibilidad de teléfonos en Cuba. La infraestructura es gratuita y tiene límites, por lo que puede haber:</p>
-    <ul>
-      <li>Retrasos al iniciar sesión o al recibir correos de recuperación.</li>
-      <li>Cupos diarios de lecturas/escrituras y almacenamiento.</li>
-      <li>Intermitencias cuando hay muchos usuarios a la vez.</li>
-    </ul>
-    <div class="btns">
-      <button id="btn-cerrar-aviso" class="btn" type="button">Entendido</button>
+    <main class="main" role="main">
+      <h1 class="h1">Acceso rápido</h1>
+      <div class="quick">
+        <a href="subir.html" class="action action--primary only-auth" aria-describedby="desc-subir">
+          <span class="action__icon">⬆️</span>
+          <div class="action__text">
+            <h2>Subir modelos</h2>
+            <p id="desc-subir">Agrega nuevos equipos a la base.</p>
+          </div>
+        </a>
+        <a href="login.html" class="action action--primary only-anon" aria-disabled="true" aria-describedby="desc-subir-guest">
+          <span class="action__icon">🔒</span>
+          <div class="action__text">
+            <h2>Subir modelos</h2>
+            <p id="desc-subir-guest">Inicia sesión para poder subir.</p>
+          </div>
+        </a>
+        <a href="revisar.html" class="action action--secondary" aria-describedby="desc-revisar">
+          <span class="action__icon">🔎</span>
+          <div class="action__text">
+            <h2>Revisar modelos</h2>
+            <p id="desc-revisar">Busca y valida modelos existentes.</p>
+          </div>
+        </a>
+      </div>
+
+      <section class="grid2" aria-label="Información">
+        <div class="card pad" role="region" aria-labelledby="avisos-title">
+          <h2 id="avisos-title" class="h2">Avisos</h2>
+          <ul class="muted">
+            <li>Los correos de recuperación pueden demorar.</li>
+            <li>Se aplican límites gratuitos de Supabase.</li>
+          </ul>
+        </div>
+        <div class="card pad" role="region" aria-labelledby="ayuda-title">
+          <h2 id="ayuda-title" class="h2">Ayuda rápida</h2>
+          <p class="muted">Consulta y sube modelos compatibles con Cuba. Si ves errores, escríbenos.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container"><p>Proyecto colaborativo — Teléfonos Cuba</p></div>
+  </footer>
+
+  <!-- Drawer de perfil -->
+  <div id="profile-backdrop" class="backdrop" aria-hidden="true"></div>
+  <aside id="profile-drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="profile-title" aria-hidden="true">
+    <div class="drawer__panel">
+      <div class="drawer__head">
+        <h2 id="profile-title" class="h2">Editar perfil</h2>
+        <button id="profile-close" class="link" type="button" aria-label="Cerrar">✕</button>
+      </div>
+      <form id="profile-form" class="form" autocomplete="on">
+        <label>Nuevo correo <input id="new-email" type="email" placeholder="tu@correo.com" autocomplete="email"></label>
+        <label>Foto de perfil <input id="avatar-file" type="file" accept="image/*"></label>
+        <button class="btn" type="submit">Guardar cambios</button>
+        <p class="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Modal de aviso -->
+  <div id="modal-backdrop" class="backdrop"></div>
+  <div id="modal-aviso" class="modal">
+    <div class="panel">
+      <h2>Aviso y propósito</h2>
+      <p class="muted">Este proyecto comunitario permite consultar y aportar compatibilidad de teléfonos en Cuba. La infraestructura es gratuita y tiene límites, por lo que puede haber:</p>
+      <ul>
+        <li>Retrasos al iniciar sesión o al recibir correos de recuperación.</li>
+        <li>Cupos diarios de lecturas/escrituras y almacenamiento.</li>
+        <li>Intermitencias cuando hay muchos usuarios a la vez.</li>
+      </ul>
+      <div class="btns">
+        <button id="btn-cerrar-aviso" class="btn" type="button">Entendido</button>
+      </div>
     </div>
   </div>
-  </div>
+</body>
 </html>
+

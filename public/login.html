@@ -6,9 +6,11 @@
   <title>Login — Teléfonos Cuba</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.supabase.co; connect-src https://*.supabase.co; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" integrity="sha256-lid+wA4Z30dtc5aoolhrQe0QM9z2gPWqebDFVgWXkrg=" crossorigin="anonymous" defer></script>
   <script src="config.js" defer></script>
   <script src="app.js" defer></script>
   <script src="script.js" defer></script>
@@ -35,8 +37,8 @@
   <section class="card glass">
     <h2>Inicia sesión</h2>
     <form id="login-form" class="form">
-      <label>Correo <input id="email" type="email" required></label>
-      <label>Contraseña <input id="password" type="password" required minlength="6"></label>
+      <label>Correo <input id="email" type="email" autocomplete="email" required></label>
+      <label>Contraseña <input id="password" type="password" autocomplete="current-password" required minlength="6"></label>
       <button class="btn" type="submit">Entrar</button>
       <div class="row-between">
         <button class="link" id="reset-btn" type="button">¿Olvidaste la contraseña?</button>
@@ -56,7 +58,7 @@
   <div class="container">
     <p>Proyecto colaborativo — Teléfonos Cuba</p>
     <div class="badges" style="justify-content:center;margin-top:.4rem">
-      <a class="badge paypal" href="https://www.paypal.me/MReyesMorales343" target="_blank" rel="noopener">
+      <a class="badge paypal" href="https://www.paypal.me/MReyesMorales343" target="_blank" rel="noopener noreferrer">
         <span class="emoji" aria-hidden="true">💸</span> PayPal
       </a>
       <span class="badge cup subtle">
@@ -84,4 +86,3 @@
 </div>
 </body>
 </html>
-

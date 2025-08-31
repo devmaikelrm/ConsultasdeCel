@@ -1,4 +1,4 @@
-// app.js — rutas claras + UI dinámica (sin CSV)
+﻿// app.js â€” rutas claras + UI dinÃ¡mica (sin CSV)
 // Requiere: config.js (SUPABASE_URL, SUPABASE_KEY)
 const sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
 
@@ -85,7 +85,7 @@ function setupNav(isAuth, session){
   $$('.only-anon').forEach(el=> el.style.display = isAuth ? 'none' : '');
   $$('.user-email').forEach(el=> el.textContent = isAuth ? (session.user.email||'') : '');
   $$('.btn-logout').forEach(btn=> btn.addEventListener('click', async ()=>{
-    const ok = confirm('¿Seguro que quieres cerrar sesión?');
+    const ok = confirm('Â¿Seguro que quieres cerrar sesiÃ³n?');
     if(!ok) return;
     try{ await sb.auth.signOut(); }catch{}
     window.location.replace('login.html');
@@ -113,7 +113,7 @@ function setupLogin(){
       const pass = form.querySelector('input[type=password]').value;
       const btn = form.querySelector('button[type=submit]');
       const status = form.querySelector('.form-status');
-      btn.disabled = true; status.textContent = 'Ingresando…';
+      btn.disabled = true; status.textContent = 'Ingresandoâ€¦';
       try{
         const { error } = await sb.auth.signInWithPassword({ email, password: pass });
         if(error) throw error;
@@ -128,7 +128,7 @@ function setupLogin(){
   const redirectTo = BASE_URL + 'dashboard.html';
   $('#login-google')?.addEventListener('click', async ()=>{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo } }); });
   $('#login-github')?.addEventListener('click', async ()=>{ await sb.auth.signInWithOAuth({ provider:'github', options:{ redirectTo } }); });
-  // Recuperar contraseña: si hay email, envía enlace; si no, ir a recover.html
+  // Recuperar contraseÃ±a: si hay email, envÃ­a enlace; si no, ir a recover.html
   $('#reset-btn')?.addEventListener('click', async ()=>{
     const emailEl = document.getElementById('email');
     const emailVal = emailEl?.value.trim();
@@ -139,8 +139,8 @@ function setupLogin(){
         if(String(location.origin||'').startsWith('http')) opts.redirectTo = BASE_URL + 'change.html';
         const { error } = await sb.auth.resetPasswordForEmail(emailVal, opts);
         if(error) throw error;
-        if(status) status.textContent = `Enlace de recuperación enviado a: ${emailVal}`;
-        showToast('Enlace de recuperación enviado', 'ok');
+        if(status) status.textContent = `Enlace de recuperaciÃ³n enviado a: ${emailVal}`;
+        showToast('Enlace de recuperaciÃ³n enviado', 'ok');
       } else {
         window.location.href = 'recover.html';
       }
@@ -155,21 +155,21 @@ function setupLogin(){
     const usp = new URLSearchParams(location.search);
     if(usp.get('changed')==='1'){
       const status = form?.querySelector('.status');
-      if(status) status.textContent = 'Contraseña actualizada. Inicia sesión.';
-      showToast('Contraseña actualizada', 'ok');
+      if(status) status.textContent = 'ContraseÃ±a actualizada. Inicia sesiÃ³n.';
+      showToast('ContraseÃ±a actualizada', 'ok');
     }
   }catch{}
 
-  // Si viene de un enlace de recuperación (#type=recovery en URL), mostrar mensaje y limpiar hash
+  // Si viene de un enlace de recuperaciÃ³n (#type=recovery en URL), mostrar mensaje y limpiar hash
   if(/type=recovery/.test(location.hash||'')){
     const status = form?.querySelector('.status');
-    if(status) status.textContent = 'Tu contraseña fue restablecida. Inicia sesión.';
-    showToast('Tu contraseña fue restablecida', 'ok');
+    if(status) status.textContent = 'Tu contraseÃ±a fue restablecida. Inicia sesiÃ³n.';
+    showToast('Tu contraseÃ±a fue restablecida', 'ok');
     try{ history.replaceState(null,'', location.pathname + location.search); }catch{}
   }
 }
 
-// Recuperar contraseña (recover.html)
+// Recuperar contraseÃ±a (recover.html)
 function setupRecover(){
   const form = document.getElementById('recover-form');
   if(!form) return;
@@ -183,7 +183,7 @@ function setupRecover(){
       const { error } = await sb.auth.resetPasswordForEmail(email, opts);
       if(error) throw error;
       if(status) status.textContent = `Listo. Enlace enviado a: ${email}`;
-      showToast('Enlace de recuperación enviado', 'ok');
+      showToast('Enlace de recuperaciÃ³n enviado', 'ok');
       form.reset();
     }catch(err){
       if(status) status.textContent = 'Ups: ' + (err?.message||err);
@@ -192,7 +192,7 @@ function setupRecover(){
   });
 }
 
-// Intro modal (aviso de propósito y limitaciones)
+// Intro modal (aviso de propÃ³sito y limitaciones)
 async function setupIntroModal(){
   const modal = document.getElementById('modal-aviso');
   const backdrop = document.getElementById('modal-backdrop');
@@ -213,7 +213,7 @@ async function setupIntroModal(){
     }
   }catch{}
 
-  // Abrir automáticamente SOLO en login y solo una vez (por navegador)
+  // Abrir automÃ¡ticamente SOLO en login y solo una vez (por navegador)
   // Casos que fuerzan apertura: ?aviso=1 o #aviso, o al venir de registro (?registered=1)
   try{
     const usp = new URLSearchParams(location.search);
@@ -225,7 +225,7 @@ async function setupIntroModal(){
 
   const markSeen = async ()=>{
     try{ localStorage.setItem(seenKey,'1'); }catch{}
-    // Persistir en user_metadata si hay sesión
+    // Persistir en user_metadata si hay sesiÃ³n
     try{
       const { data: { user } } = await sb.auth.getUser();
       if(user){ await sb.auth.updateUser({ data: { [seenKey]: true } }); }
@@ -245,7 +245,7 @@ function escapeHTML(s=''){
     .replaceAll("'","&#39;");
 }
 
-// Listado y búsqueda (revisar.html)
+// Listado y bÃºsqueda (revisar.html)
 function setupList(){
   const search = document.getElementById('search');
   const results = document.getElementById('results');
@@ -295,7 +295,7 @@ function setupDashboard(){
       e.preventDefault();
       const newEmail = $('#new-email')?.value?.trim();
       const status = form.querySelector('.status');
-      status.textContent = 'Guardando…';
+      status.textContent = 'Guardandoâ€¦';
       try{
         if(newEmail){
           const { error } = await sb.auth.updateUser({ email: newEmail });
@@ -314,7 +314,7 @@ function setupDashboard(){
         status.textContent = 'Listo. Cambios guardados';
         showToast('Cambios guardados', 'ok');
       }catch(err){
-        status.textContent = 'Ups… ' + (err?.message || err);
+        status.textContent = 'Upsâ€¦ ' + (err?.message || err);
         showToast('No se pudo guardar: ' + (err?.message||err), 'err');
       }
     });
@@ -337,7 +337,7 @@ function setupSubir(){
       showToast('Completa los campos obligatorios', 'err');
       return;
     }
-    status.textContent = 'Guardando…';
+    status.textContent = 'Guardandoâ€¦';
     try{
       const payload = { commercial_name, model, bands, provinces: provinces || null };
       const { error } = await sb.from('phones').insert([payload]);
@@ -393,7 +393,7 @@ function setupRegister(){
   });
 }
 
-// Página de cambio de contraseña (change.html)
+// PÃ¡gina de cambio de contraseÃ±a (change.html)
 function setupChange(){
   const form = document.getElementById('change-form');
   if(!form) return;
@@ -404,14 +404,14 @@ function setupChange(){
     e.preventDefault();
     const p1 = pass1?.value || '';
     const p2 = pass2?.value || '';
-    if(p1.length < 6){ status.textContent = 'La contraseña debe tener al menos 6 caracteres'; return; }
-    if(p1 !== p2){ status.textContent = 'Las contraseñas no coinciden'; return; }
+    if(p1.length < 6){ status.textContent = 'La contraseÃ±a debe tener al menos 6 caracteres'; return; }
+    if(p1 !== p2){ status.textContent = 'Las contraseÃ±as no coinciden'; return; }
     try{
       const { data: { session } } = await sb.auth.getSession();
       if(!session){ window.location.replace('login.html'); return; }
       const { error } = await sb.auth.updateUser({ password: p1 });
       if(error) throw error;
-      showToast('Contraseña actualizada', 'ok');
+      showToast('ContraseÃ±a actualizada', 'ok');
       try{ await sb.auth.signOut(); }catch{}
       window.location.replace('login.html?changed=1');
     }catch(err){
@@ -420,3 +420,5 @@ function setupChange(){
     }
   });
 }
+
+
