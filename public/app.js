@@ -298,7 +298,7 @@ function setupDashboard(){
       status.textContent = 'Guardandoâ€¦';
       try{
         if(newEmail){
-          const { error } = await sb.auth.updateUser({ email: newEmail });
+          const { error } = await sb.auth.updateUser({ email: newEmail }, { emailRedirectTo: BASE_URL + 'dashboard.html' });
           if(error) throw error;
         }
         const f = fileInput?.files?.[0];
@@ -379,7 +379,7 @@ function setupRegister(){
     const password = document.getElementById('reg-pass')?.value;
     const status = form.querySelector('.status');
     try{
-      const { error } = await sb.auth.signUp({ email, password });
+      const { error } = await sb.auth.signUp({ email, password, options: { emailRedirectTo: BASE_URL + 'dashboard.html' } });
       if(error) throw error;
       if(status) status.textContent = `Listo. Revisa tu correo: ${email}`;
       showToast('Registro creado. Revisa tu correo', 'ok');
@@ -420,5 +420,6 @@ function setupChange(){
     }
   });
 }
+
 
 
