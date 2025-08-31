@@ -17,6 +17,8 @@ html,body{margin:0;padding:0;min-height:100%;background:var(--bg);color:var(--te
 img{max-width:100%;display:block}
 a{color:var(--brand);text-decoration:none}
 a:hover{text-decoration:underline}
+/* Focus visible for accessibility */
+:focus-visible{outline:2px solid var(--brand); outline-offset:2px}
 
 /* ===== Layout ===== */
 .container{width:min(1100px,92%);margin-inline:auto;padding:28px 0}
@@ -124,6 +126,11 @@ html[data-page='dashboard'], body[data-page='dashboard']{min-height:100%}
 .splash{display:flex;align-items:center;gap:16px;margin-bottom:16px}
 .spinner{width:28px;height:28px;border-radius:50%;border:3px solid rgba(255,255,255,.22); border-top-color: var(--brand);animation: spin 0.9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* Check groups */
+.checks{display:flex;gap:12px;align-items:center;border:1px solid rgba(255,255,255,.08);padding:10px;border-radius:12px}
+.checks legend{font-weight:700;font-size:.9rem}
+.checks label{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--muted)}
 
 /* Overrides for donate emoji sizing */
 .badge .emoji{font-size:1em}
