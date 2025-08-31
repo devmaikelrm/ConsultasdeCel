@@ -4,6 +4,14 @@ const sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY
 
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+// Base URL (soportar GitHub Pages en subcarpeta)
+const BASE_URL = (()=>{
+  try{
+    const { origin, pathname } = location;
+    const base = pathname.endsWith('/') ? pathname : pathname.replace(/\/[^\/]*$/, '/');
+    return origin + base;
+  }catch{ return ''; }
+})();
 
 // --- Toasts ---
 function showToast(msg, type='ok'){
@@ -107,7 +115,7 @@ function setupLogin(){
       }
     });
   }
-  const redirectTo = location.origin + '/dashboard.html';
+  const redirectTo = BASE_URL + 'dashboard.html';
   $('#login-google')?.addEventListener('click', async ()=>{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo } }); });
   $('#login-github')?.addEventListener('click', async ()=>{ await sb.auth.signInWithOAuth({ provider:'github', options:{ redirectTo } }); });
   // Recuperar contraseña: si hay email, envía enlace; si no, ir a recover.html
@@ -118,7 +126,7 @@ function setupLogin(){
     try{
       if(emailVal){
         const opts = {};
-        if(String(location.origin||'').startsWith('http')) opts.redirectTo = location.origin + '/change.html';
+        if(String(location.origin||'').startsWith('http')) opts.redirectTo = BASE_URL + 'change.html';
         const { error } = await sb.auth.resetPasswordForEmail(emailVal, opts);
         if(error) throw error;
         if(status) status.textContent = `Enlace de recuperación enviado a: ${emailVal}`;
@@ -161,7 +169,7 @@ function setupRecover(){
     const status = form.querySelector('.status');
     try{
       const opts = {};
-      if(String(location.origin||'').startsWith('http')) opts.redirectTo = location.origin + '/change.html';
+      if(String(location.origin||'').startsWith('http')) opts.redirectTo = BASE_URL + 'change.html';
       const { error } = await sb.auth.resetPasswordForEmail(email, opts);
       if(error) throw error;
       if(status) status.textContent = `Listo. Enlace enviado a: ${email}`;
@@ -353,4 +361,3 @@ function setupChange(){
     }
   });
 }
-
