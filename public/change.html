@@ -1,47 +1,45 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="referrer" content="strict-origin-when-cross-origin">  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.supabase.co; connect-src https://*.supabase.co; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"><title>Cambiar contraseña — Teléfonos Cuba</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambiar contraseña — Teléfonos Cuba</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" integrity="sha256-lid+wA4Z30dtc5aoolhrQe0QM9z2gPWqebDFVgWXkrg=" crossorigin="anonymous" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" defer></script>
   <script src="config.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body data-page="change">
-<header class="navbar">
-  <div class="container nav-inner">
-    <a class="brand" href="index.html">Consultas de Cel</a>
-    <nav class="nav-links">
-      <a href="index.html" class="link"></a>
-      
-      <a class="link only-auth" href="dashboard.html">Mi cuenta</a>
-      <span class="user-email only-auth"></span>
-      <button class="link btn-logout only-auth" type="button">Cerrar sesión</button>
-      <a class="link only-anon" href="login.html">Iniciar sesión</a>
-      <a class="link only-anon" href="register.html">Crear cuenta</a>
-    </nav>
-  </div>
-</header>
-<main class="container narrow">
-  <section class="card glass">
-    <h2>Cambiar contraseña</h2>
-    <p class="muted">Introduce tu nueva contraseña para continuar.</p>
-    <form id="change-form" class="form">
-      <label>Nueva contraseña <input id="new-pass" autocomplete="new-password" type="password" minlength="6" required></label>
-      <label>Confirmar contraseña <input id="confirm-pass" autocomplete="new-password" type="password" minlength="6" required></label>
-      <button class="btn" type="submit">Actualizar</button>
-      <p class="status" aria-live="polite"></p>
-    </form>
-  </section>
-</main>
-<footer class="footer">
-  <div class="container"><p>Proyecto colaborativo — Teléfonos Cuba</p></div>
-</footer>
-</body></html>
+  <main class="container page-center">
+    <section class="card auth-card">
+      <h1 class="auth-title">Cambiar contraseña</h1>
+      <p class="auth-sub">Escribe y confirma tu nueva contraseña.</p>
 
+      <form id="change-form" class="form">
+        <label>Nueva contraseña
+          <input id="new-pass" type="password" minlength="6" placeholder="••••••••" required>
+        </label>
 
+        <label>Confirmar contraseña
+          <input id="confirm-pass" type="password" minlength="6" placeholder="••••••••" required>
+        </label>
 
+        <button class="btn primary" type="submit">Actualizar</button>
+        <p class="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="donate-footer">
+    <div class="donate-row">
+      <a class="btn oauth paypal-btn" href="https://www.paypal.me/MReyesMorales343" target="_blank" rel="noopener">PayPal</a>
+      <div class="cup-card">
+        <div>
+          <div class="cup-title">Tarjeta CUP (Cuba)</div>
+          <div class="cup-num">9238 1299 7063 1810</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
