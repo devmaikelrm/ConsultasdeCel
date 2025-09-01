@@ -207,6 +207,12 @@ input[type="text"], input[type="email"], input[type="password"], input[type="tel
 .filters-row{ display:flex; gap:12px; margin:8px 0 12px; flex-wrap:wrap; }
 #bands-select{ min-height: 110px; }
 
+/* Short viewport: avoid rigid centering so native selects can expand */
+@media (max-height: 700px) {
+  .page-center{ display:block; min-height:auto; padding:16px 0; }
+  .auth-card{ margin: 16px auto; }
+}
+
 /* === Auth Card: overrides === */
 /* --- Auth Card --- */
 .auth-card {
