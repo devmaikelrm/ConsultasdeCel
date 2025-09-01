@@ -4,14 +4,8 @@ const sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY
 
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
-// Base URL (soportar GitHub Pages en subcarpeta)
-const BASE_URL = (()=>{
-  try{
-    const { origin, pathname } = location;
-    const base = pathname.endsWith('/') ? pathname : pathname.replace(/\/[^\/]*$/, '/');
-    return origin + base;
-  }catch{ return ''; }
-})();
+// BASE_URL para GitHub Pages (carpeta /ConsultasdeCel/public/)
+const BASE_URL = `${window.location.origin}/ConsultasdeCel/public/`;
 
 
 // Catálogo de provincias (puedes mover a Supabase más adelante)
@@ -80,10 +74,7 @@ async function guardRoutes(){
   const protectedPages = new Set(['dashboard','subir','revisar']);
   const publicOnly = new Set(['login','register','recover']);
 
-  if(page==='index'){
-    window.location.href = isAuth ? 'dashboard.html' : 'login.html';
-    return;
-  }
+  // Página de inicio es pública (no redirigir)
   if(protectedPages.has(page) && !isAuth){ window.location.replace('login.html'); return; }
   if(publicOnly.has(page) && isAuth){ window.location.replace('dashboard.html'); return; }
 
