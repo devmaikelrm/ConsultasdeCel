@@ -2,10 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.supabase.co; connect-src https://*.supabase.co; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
-  <title>Dashboard â€” TelÃ©fonos Cuba</title>
+  <title>Dashboard — Teléfonos Cuba</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -29,6 +30,7 @@
         <button type="button" class="link btn-logout only-auth" aria-label="Cerrar sesión">Cerrar sesión</button>
         <a class="link only-anon" href="login.html">Iniciar sesión</a>
         <a class="link only-anon" href="register.html">Crear cuenta</a>
+              <a href="editar-perfil.html" class="link">Perfil</a>
       </nav>
     </div>
   </header>
@@ -45,6 +47,43 @@
     </aside>
 
     <main class="main" role="main">
+    <section class="hero">
+      <h1 class="dash-title">Panel</h1>
+      <p class="muted">Resumen rápido y accesos.</p>
+    </section>
+
+    <section class="dash-grid">
+      <article class="stat card">
+        <div class="stat__icon" aria-hidden="true">📱</div>
+        <div class="stat__body">
+          <h3>Total teléfonos</h3>
+          <p id="stat-total" class="stat__num">—</p>
+        </div>
+      </article>
+      <article class="stat card">
+        <div class="stat__icon" aria-hidden="true">🛠️</div>
+        <div class="stat__body">
+          <h3>Pendientes</h3>
+          <p id="stat-pend" class="stat__num">—</p>
+        </div>
+      </article>
+      <article class="stat card">
+        <div class="stat__icon" aria-hidden="true">✅</div>
+        <div class="stat__body">
+          <h3>Revisados</h3>
+          <p id="stat-rev" class="stat__num">—</p>
+        </div>
+      </article>
+      <article class="quick card">
+        <h3>Accesos rápidos</h3>
+        <div class="quick__links">
+          <a class="btn" href="subir.html">Subir teléfonos</a>
+          <a class="btn" href="revisar.html">Revisar/validar</a>
+          <a class="btn" href="editar-perfil.html">Editar perfil</a>
+        </div>
+      </article>
+    </section>
+    
       <h1 class="h1">Acceso rÃ¡pido</h1>
       <div class="quick">
         <a href="subir.html" class="action action--primary only-auth" aria-describedby="desc-subir">
@@ -70,7 +109,7 @@
         </a>
       </div>
 
-      <section class="grid2" aria-label="InformaciÃ³n">
+      <section class="grid2" aria-label="Información">
         <div class="card pad" role="region" aria-labelledby="avisos-title">
           <h2 id="avisos-title" class="h2">Avisos</h2>
           <ul class="muted">
@@ -87,7 +126,7 @@
   </div>
 
   <footer class="footer">
-    <div class="container"><p>Proyecto colaborativo â€” TelÃ©fonos Cuba</p></div>
+    <div class="container"><p>Proyecto colaborativo — Teléfonos Cuba</p></div>
   </footer>
 
   <!-- Drawer de perfil -->

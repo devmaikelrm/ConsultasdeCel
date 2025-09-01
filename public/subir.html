@@ -2,10 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.supabase.co; connect-src https://*.supabase.co; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
-  <title>Subir â€” TelÃ©fonos Cuba</title>
+  <title>Subir — Teléfonos Cuba</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -63,13 +64,24 @@
         <label><input type="checkbox" name="prov" value="GuantÃ¡namo"> GuantÃ¡namo</label>
         <label><input type="checkbox" name="prov" value="Isla de la Juventud"> Isla de la Juventud</label>
       </fieldset>
+    <label>Bandas
+      <select id="bands-select" multiple size="4">
+        <option value="Todas">Todas</option>
+        <option value="2G">2G</option>
+        <option value="3G">3G</option>
+        <option value="4G">4G</option>
+      </select>
+      <span class="hint">Selecciona una o varias. "Todas" selecciona 2G, 3G y 4G.</span>
+    </label>
+    
+
       <button class="btn" type="submit">Guardar</button>
       <p class="status" aria-live="polite"></p>
     </form>
   </section>
 </main>
 <footer class="footer">
-  <div class="container"><p>Proyecto colaborativo â€” TelÃ©fonos Cuba</p></div>
+  <div class="container"><p>Proyecto colaborativo — Teléfonos Cuba</p></div>
 </footer>
 <!-- Modal de aviso -->
 <div id="modal-backdrop" class="backdrop"></div>

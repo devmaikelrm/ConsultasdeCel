@@ -13,6 +13,26 @@ const BASE_URL = (()=>{
   }catch{ return ''; }
 })();
 
+
+// Catálogo de provincias (puedes mover a Supabase más adelante)
+const PROVINCIAS = [
+  "Pinar del Río","Artemisa","La Habana","Mayabeque","Matanzas","Cienfuegos",
+  "Villa Clara","Sancti Spíritus","Ciego de Ávila","Camagüey","Las Tunas",
+  "Holguín","Granma","Santiago de Cuba","Guantánamo","Isla de la Juventud"
+];
+function renderProvinciaSelect(sel="#reg-provincia", selectedValue=""){
+  const el = document.querySelector(sel);
+  if(!el) return;
+  // si ya tiene opciones (placeholder), limpia las demás
+  el.querySelectorAll("option:not([value=''])").forEach(o=>o.remove());
+  PROVINCIAS.forEach(p=>{
+    const opt = document.createElement("option");
+    opt.value = p; opt.textContent = p;
+    if(selectedValue && selectedValue === p) opt.selected = true;
+    el.appendChild(opt);
+  });
+}
+
 // --- Toasts ---
 function showToast(msg, type='ok'){
   let wrap = document.querySelector('.toast-wrap');
@@ -253,19 +273,34 @@ function setupList(){
   let modelsCache = [];
 
   async function load(){
-    const { data, error } = await sb.from('phones').select('*');
-    if(error){ results.textContent = `Ups: ${error.message}`; return; }
+    let data=null, error=null;
+    try{
+      const res = await sb.from('phones').select('*');
+      data = res.data; error = res.error;
+      if(error) throw error;
+    }catch(e){
+      try{
+        TABLE_MODELS = (TABLE_MODELS === 'phones') ? 'telefonos' : 'phones';
+        const res2 = await sb.from('phones').select('*');
+        data = res2.data; error = res2.error;
+        if(error) throw error;
+      }catch(e2){
+        results.textContent = `Ups: ${e2?.message || e2}`; return;
+      }
+    }
     modelsCache = data || [];
     render();
   }
   function render(){
     const q = (search.value||'').toLowerCase();
     const filtered = modelsCache.filter(m => (m.commercial_name||'').toLowerCase().includes(q) || (m.model||'').toLowerCase().includes(q));
-    results.innerHTML = filtered.map(m=>`
+    results.innerHTML = (filtered.length===0)
+      ? `<div class=\"card\"><b>No testeado</b><br>No hay registros para tu búsqueda. <a class=\"link\" href=\"subir.html\">Aporta un modelo</a>.</div>`
+      : filtered.map(m=>`
       <div class="card">
         <b>${escapeHTML(m.commercial_name||'Nombre')}</b> (${escapeHTML(m.model||'Modelo')})<br>
-        Bandas: ${escapeHTML(m.bands||'N/A')}<br>
-        Provincias: ${escapeHTML(m.provinces||'N/A')}
+        Bandas: ${escapeHTML(m.bands||'No testeado')}<br>
+        Provincias: ${escapeHTML(m.provinces||'No testeado')}
       </div>
     `).join('');
   }
@@ -290,6 +325,26 @@ function setupDashboard(){
     }catch(_e){}
   })();
 
+
+// Catálogo de provincias (puedes mover a Supabase más adelante)
+const PROVINCIAS = [
+  "Pinar del Río","Artemisa","La Habana","Mayabeque","Matanzas","Cienfuegos",
+  "Villa Clara","Sancti Spíritus","Ciego de Ávila","Camagüey","Las Tunas",
+  "Holguín","Granma","Santiago de Cuba","Guantánamo","Isla de la Juventud"
+];
+function renderProvinciaSelect(sel="#reg-provincia", selectedValue=""){
+  const el = document.querySelector(sel);
+  if(!el) return;
+  // si ya tiene opciones (placeholder), limpia las demás
+  el.querySelectorAll("option:not([value=''])").forEach(o=>o.remove());
+  PROVINCIAS.forEach(p=>{
+    const opt = document.createElement("option");
+    opt.value = p; opt.textContent = p;
+    if(selectedValue && selectedValue === p) opt.selected = true;
+    el.appendChild(opt);
+  });
+}
+
   if(form){
     form.addEventListener('submit', async (e)=>{
       e.preventDefault();
@@ -298,7 +353,7 @@ function setupDashboard(){
       status.textContent = 'Guardandoâ€¦';
       try{
         if(newEmail){
-          const { error } = await sb.auth.updateUser({ email: newEmail }, { emailRedirectTo: BASE_URL + 'dashboard.html' });
+          const { error } = await sb.auth.updateUser({ email: newEmail }, { emailRedirectTo: BASE_URL + 'auth-callback.html' });
           if(error) throw error;
         }
         const f = fileInput?.files?.[0];
@@ -323,6 +378,7 @@ function setupDashboard(){
 
 // Subir modelo: inserta en Supabase (tabla public.phones)
 function setupSubir(){
+  const bandsSel = document.getElementById('bands-select');
   const form = document.querySelector('#form-subir');
   if(!form) return;
   const status = form.querySelector('.status');
@@ -361,6 +417,26 @@ function setupSubir(){
   }
 })();
 
+
+// Catálogo de provincias (puedes mover a Supabase más adelante)
+const PROVINCIAS = [
+  "Pinar del Río","Artemisa","La Habana","Mayabeque","Matanzas","Cienfuegos",
+  "Villa Clara","Sancti Spíritus","Ciego de Ávila","Camagüey","Las Tunas",
+  "Holguín","Granma","Santiago de Cuba","Guantánamo","Isla de la Juventud"
+];
+function renderProvinciaSelect(sel="#reg-provincia", selectedValue=""){
+  const el = document.querySelector(sel);
+  if(!el) return;
+  // si ya tiene opciones (placeholder), limpia las demás
+  el.querySelectorAll("option:not([value=''])").forEach(o=>o.remove());
+  PROVINCIAS.forEach(p=>{
+    const opt = document.createElement("option");
+    opt.value = p; opt.textContent = p;
+    if(selectedValue && selectedValue === p) opt.selected = true;
+    el.appendChild(opt);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', guardRoutes);
 sb.auth.onAuthStateChange((_e, session)=>{
   const page = document.body.dataset.page || 'index';
@@ -370,7 +446,7 @@ sb.auth.onAuthStateChange((_e, session)=>{
 });
 
 // Registro (register.html)
-function setupRegister(){
+function setupRegister(){ renderProvinciaSelect();
   const form = document.getElementById('register-form');
   if(!form) return;
   form.addEventListener('submit', async (e)=>{
@@ -379,7 +455,7 @@ function setupRegister(){
     const password = document.getElementById('reg-pass')?.value;
     const status = form.querySelector('.status');
     try{
-      const { error } = await sb.auth.signUp({ email, password, options: { emailRedirectTo: BASE_URL + 'dashboard.html' } });
+      const { error } = await sb.auth.signUp({ email, password, options: { emailRedirectTo: BASE_URL + 'auth-callback.html' } });
       if(error) throw error;
       if(status) status.textContent = `Listo. Revisa tu correo: ${email}`;
       showToast('Registro creado. Revisa tu correo', 'ok');
@@ -426,3 +502,76 @@ function setupChange(){
 
 
 
+
+
+// Dashboard stats (best-effort, replace with real queries if you want)
+async function updateDashboardStats(){
+  try{
+    const elT = document.getElementById('stat-total');
+    const elP = document.getElementById('stat-pend');
+    const elR = document.getElementById('stat-rev');
+    if(!(elT||elP||elR)) return;
+
+    // Si tienes tabla 'telefonos' con campos 'estado' (pendiente/revisado), ajusta aquí.
+    // Intento de conteos básicos (no obligatorio)
+    try{
+      const { count: total } = await sb.from('telefonos').select('*', { count:'exact', head:true });
+      if(elT && typeof total === 'number') elT.textContent = total;
+    }catch{}
+
+    try{
+      const { count: pend } = await sb.from('telefonos').select('*', { count:'exact', head:true }).eq('estado', 'pendiente');
+      if(elP && typeof pend === 'number') elP.textContent = pend;
+    }catch{}
+
+    try{
+      const { count: rev } = await sb.from('telefonos').select('*', { count:'exact', head:true }).eq('estado', 'revisado');
+      if(elR && typeof rev === 'number') elR.textContent = rev;
+    }catch{}
+  }catch(e){ console.debug('stats skipped', e); }
+}
+document.addEventListener('DOMContentLoaded', updateDashboardStats);
+
+
+// --- Toast utility & URL message handling ---
+(function(){
+  if (!document.querySelector('.toast-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'toast-wrap';
+    document.body.appendChild(wrap);
+  }
+  window.showToast = function(msg, type='ok', timeout=3500){
+    const wrap = document.querySelector('.toast-wrap');
+    const el = document.createElement('div');
+    el.className = 'toast ' + (type==='err' ? 'toast-err' : 'toast-ok');
+    el.textContent = msg;
+    wrap.appendChild(el);
+    // force reflow for transition
+    requestAnimationFrame(()=>{ el.classList.add('show'); });
+    setTimeout(()=>{
+      el.classList.remove('show');
+      setTimeout(()=> el.remove(), 300);
+    }, timeout);
+  };
+
+  // On load, show messages from ?m=
+  const params = new URLSearchParams(location.search);
+  const m = params.get('m');
+  if(m){
+    const messages = {
+      confirmed: '¡Email confirmado! Ya puedes iniciar sesión.',
+      oauth_error: 'Error al iniciar con Google/GitHub. Inténtalo de nuevo.',
+      need_login: 'Inicia sesión para continuar.',
+      signed_out: 'Sesión cerrada correctamente.'
+    };
+    const msg = messages[m] || null;
+    if(msg) showToast(msg, m==='oauth_error' ? 'err' : 'ok');
+  }
+})();
+
+
+function getSelectedBands(select){
+  const values = Array.from(select.selectedOptions).map(o=>o.value);
+  if(values.includes('Todas')) return ['2G','3G','4G'];
+  return values;
+}

@@ -34,3 +34,21 @@
 .drawer__panel{position:absolute;top:0;right:0;height:100%;width:min(420px,92%);background:var(--card);border-left:1px solid rgba(255,255,255,.12);border-radius:16px 0 0 16px;padding:18px}
 .drawer__head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 
+
+
+/* --- Modern dashboard grid & stats --- */
+.dash-title{ margin:0 0 6px; font-size:clamp(20px,3.6vw,28px); font-weight:700; }
+.dash-grid{
+  display:grid;
+  gap:16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 12px 0 24px;
+}
+.card.stat{ display:flex; align-items:center; gap:14px; padding:16px; border:1px solid rgba(255,255,255,.08); border-radius:16px; background:linear-gradient(180deg,#0b1629 0,#0a0f1f 100%); }
+.stat__icon{ font-size:28px; line-height:1; padding:12px; border-radius:12px; background:rgba(255,255,255,.06); }
+.stat__body h3{ margin:0; font-size:1rem; color:#cbd5e1; }
+.stat__num{ margin:.25rem 0 0; font-size:1.4rem; font-weight:800; }
+.card.quick{ padding:16px; border:1px solid rgba(255,255,255,.08); border-radius:16px; background:linear-gradient(180deg,#0b1629 0,#0a0f1f 100%); }
+.quick__links{ display:grid; gap:10px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+.quick .btn{ height:40px; border-radius:10px; background:#0c1426; border:1px solid rgba(255,255,255,.08); color:#e2e8f0; }
+.quick .btn:hover{ filter:brightness(1.1); }
