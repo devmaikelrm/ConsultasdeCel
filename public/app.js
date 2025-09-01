@@ -136,9 +136,9 @@ function setupLogin(){
       }
     });
   }
-  const redirectTo = BASE_URL + 'dashboard.html';
-  $('#login-google')?.addEventListener('click', async ()=>{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo } }); });
-  $('#login-github')?.addEventListener('click', async ()=>{ await sb.auth.signInWithOAuth({ provider:'github', options:{ redirectTo } }); });
+  const redirectTo = BASE_URL + 'auth-callback.html';
+  $('#login-google')?.addEventListener('click', async ()=>{ try{ await sb.auth.signInWithOAuth({ provider:'google', options:{ redirectTo } }); }catch(err){ showToast('OAuth Google: ' + (err?.message||err), 'err'); } });
+  $('#login-github')?.addEventListener('click', async ()=>{ try{ await sb.auth.signInWithOAuth({ provider:'github', options:{ redirectTo } }); }catch(err){ showToast('OAuth GitHub: ' + (err?.message||err), 'err'); } });
   // Recuperar contraseÃ±a: si hay email, envÃ­a enlace; si no, ir a recover.html
   $('#reset-btn')?.addEventListener('click', async ()=>{
     const emailEl = document.getElementById('email');
