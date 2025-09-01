@@ -206,3 +206,138 @@ input[type="text"], input[type="email"], input[type="password"], input[type="tel
 /* Filters row */
 .filters-row{ display:flex; gap:12px; margin:8px 0 12px; flex-wrap:wrap; }
 #bands-select{ min-height: 110px; }
+
+/* === Auth Card: overrides === */
+/* --- Auth Card --- */
+.auth-card {
+  max-width: 420px;
+  margin: auto;
+  padding: 24px;
+  border-radius: 16px;
+  background: #0c1426;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+.auth-title {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+.auth-links {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #9ca3af;
+}
+.auth-links a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+/* --- Inputs --- */
+.auth-card input {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  margin: 8px 0 16px;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  background: #111827;
+  color: #f9fafb;
+  font-size: 0.95rem;
+}
+.auth-card input:focus {
+  border-color: #60a5fa;
+  outline: none;
+}
+
+/* --- Botones --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+  width: auto; /* override earlier full-width */
+}
+.btn.primary {
+  width: 100%;
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+  color: white;
+}
+.btn.primary:hover {
+  opacity: 0.9;
+}
+.btn.oauth {
+  width: 100%;
+  background: #1f2937;
+  color: #f9fafb;
+  margin-top: 8px;
+  border: 1px solid #374151;
+}
+.btn.oauth:hover {
+  background: #374151;
+}
+
+/* --- Iconos en botones --- */
+.ico {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* --- Sección OAuth --- */
+.oauth-block {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* --- Footer donaciones --- */
+.donate-footer {
+  margin-top: 40px;
+  padding: 16px;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+.donate-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* --- Botón PayPal --- */
+.paypal-btn {
+  background: #0070ba;
+  color: white;
+}
+.paypal-btn:hover {
+  background: #005ea6;
+}
+
+/* --- Tarjeta CUP --- */
+.cup-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: #0c1426;
+}
+.cup-title {
+  font-weight: 700;
+  color: #e5e7eb;
+}
+.cup-num {
+  letter-spacing: 1px;
+  color: #cbd5e1;
+}
