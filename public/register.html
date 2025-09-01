@@ -52,5 +52,24 @@
       </div>
     </div>
   </footer>
+  <script>
+    // Fallback: si por alguna razón app.js no pobló provincias
+    window.addEventListener('DOMContentLoaded', function(){
+      var sel = document.getElementById('reg-provincia');
+      if(!sel) return;
+      var count = sel.options ? sel.options.length : 0;
+      if(count > 1) return; // ya poblado (placeholder + items)
+      var provincias = [
+        'Pinar del Río','Artemisa','La Habana','Mayabeque','Matanzas','Cienfuegos',
+        'Villa Clara','Sancti Spíritus','Ciego de Ávila','Camagüey','Las Tunas',
+        'Holguín','Granma','Santiago de Cuba','Guantánamo','Isla de la Juventud'
+      ];
+      provincias.forEach(function(p){
+        var o = document.createElement('option');
+        o.value = p; o.textContent = p;
+        sel.appendChild(o);
+      });
+    });
+  </script>
 </body>
 </html>
